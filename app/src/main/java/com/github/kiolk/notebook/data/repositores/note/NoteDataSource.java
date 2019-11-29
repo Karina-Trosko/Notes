@@ -14,5 +14,5 @@ public interface NoteDataSource {
 
     List<Note> getAllNotes();
 
-    List<Note>getNotes(String search);
+    List<Note> getNotesFromSearch(String search);
 }

@@ -8,7 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.widget.EditText;
+
 import com.github.kiolk.notebook.App;
 import com.github.kiolk.notebook.R;
 import com.github.kiolk.notebook.data.models.Note;
@@ -46,6 +50,24 @@ public class MainActivity extends AppCompatActivity implements NoteAdapter.NoteC
                 }
             });
         }
+        EditText searchEditText = (EditText)findViewById(R.id.searchEditText);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                adapter.setData(App.getNoteRepositoryInstance().getNotes(String.valueOf(s)));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

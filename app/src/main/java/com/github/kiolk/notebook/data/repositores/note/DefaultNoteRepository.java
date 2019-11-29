@@ -34,6 +34,6 @@ public class DefaultNoteRepository implements NoteRepository {
 
     @Override
     public List<Note> getNotes(String search) {
-        return local.getNotes(search);
+        return local.getNotesFromSearch(search);
     }
 }

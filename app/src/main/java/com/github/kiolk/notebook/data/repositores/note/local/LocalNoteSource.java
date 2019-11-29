@@ -47,6 +47,10 @@ public class LocalNoteSource implements NoteDataSource {
 
         Cursor cursor = helper.getReadableDatabase().rawQuery("SELECT * FROM " + Note.TABLE_NAME, null);
 
+        return getNotes(cursor);
+    }
+
+    private List<Note> getNotes(Cursor cursor) {
         List<Note> notes = new ArrayList<>();
         while (cursor.moveToNext()){
             Note note = new Note();
@@ -60,8 +64,9 @@ public class LocalNoteSource implements NoteDataSource {
     }
 
     @Override
-    public List<Note> getNotes(String search) {
+    public List<Note> getNotesFromSearch(String search) {
         //TODO need implement
-        return null;
+        Cursor cursor  = helper.getReadableDatabase().rawQuery("SELECT * FROM "+Note.TABLE_NAME + " WHERE " + Note.COLUMN_TITLE+ " LIKE "+"\"%"+search+"%\"",null);
+        return getNotes(cursor);
     }
 }
